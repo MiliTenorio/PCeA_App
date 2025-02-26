@@ -40,7 +40,6 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        //backgroundColor: AppColors.orange,
         flexibleSpace: Image.asset("lib/core/assets/pattern.png", fit: BoxFit.cover),
         title: Text(widget.title, style: TextStyle(fontWeight: FontWeight.w700,),),
       ),
@@ -50,14 +49,12 @@ class _MyHomePageState extends State<MyHomePage> {
           mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           ScheduledDates(),
-        TextButton(onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (context) => SchedulePage()),
-            );
-          }, child: Text("Minha disponibilidade"),),
-          
-         
+          TextButton(onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => SchedulePage()),
+              );
+            }, child: Text("Minha disponibilidade"),),
           ],
         ),
       ),

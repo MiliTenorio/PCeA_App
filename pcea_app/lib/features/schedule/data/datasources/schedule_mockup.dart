@@ -82,7 +82,8 @@ List<Schedule> schedules = [
     ]),
   ]; 
 
-  static User myUser = User(email: "mili@eu.com", name: "Milena", password: "123", scheduledDates: []);
+  static User myUser = User(email: "mili@eu.com", name: "Milena", password: "123", 
+  scheduledDates: scheduledDates, availabilitySchedule: availabilitySchedule);
 
   static List<Schedule> scheduledDates = [
     Schedule(month: Strings.march, selectedDates: [
@@ -92,4 +93,24 @@ List<Schedule> schedules = [
     ]),
   ]; 
 
+  static List<Schedule> availabilitySchedule = [
+    Schedule(month: Strings.january, selectedDates: [
+      DateTime(2025, 1, 4),
+      DateTime(2025, 1, 11),
+      DateTime(2025, 1, 18),
+      DateTime(2025, 1, 25),
+    ]),
+    Schedule(month: Strings.march, selectedDates: [
+      DateTime(2025, 3, 1),
+      DateTime(2025, 3, 15),
+      DateTime(2025, 3, 29),
+    ]),
+    Schedule(month: Strings.may, selectedDates: [
+      DateTime(2025, 5, 3),
+      DateTime(2025, 5, 10),
+      DateTime(2025, 5, 17),
+      DateTime(2025, 5, 24),
+      DateTime(2025, 5, 31),
+    ]),
+  ]; 
 }

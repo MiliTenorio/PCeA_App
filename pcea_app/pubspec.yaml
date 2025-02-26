@@ -61,6 +61,9 @@ flutter:
   assets:
     - lib/core/assets/pattern.png
     - lib/core/assets/calendar.png
+    - lib/core/assets/waiting_availabity.png
+    - lib/core/assets/wait_for_scheluded.png
+    - lib/core/assets/you_are_scheluded.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

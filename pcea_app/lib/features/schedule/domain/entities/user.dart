@@ -5,6 +5,8 @@ class User {
   final String name;
   final String password;
   final List<Schedule> scheduledDates;
+  final List<Schedule> availabilitySchedule;
 
-  User({required this.email, required this.name, required this.password, required this.scheduledDates,});
+  User({required this.email, required this.name, required this.password, 
+  required this.scheduledDates, required this.availabilitySchedule,});
 }
