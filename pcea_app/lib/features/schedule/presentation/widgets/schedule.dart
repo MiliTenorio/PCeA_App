@@ -1,16 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:pcea_app/core/utils/strings/Enums.dart';
 import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/dates_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/schedule_status_widget.dart';
 
-class ScheduledDates extends StatelessWidget {
-  const ScheduledDates({super.key});
+class Schedule extends StatelessWidget {
+  const Schedule({super.key});
 
   @override
   Widget build(BuildContext context) {
     ScheduleStatus status = getUserScheduleStatus();
     
     return Column(
+      mainAxisAlignment: MainAxisAlignment.start,
       children: [
         switch (status) {
           ScheduleStatus.noAvailability => ScheduleStatusWidget(
@@ -23,6 +25,7 @@ class ScheduledDates extends StatelessWidget {
             text: "Você está escalado para:",
             pathImage: "lib/core/assets/you_are_scheluded.png",),
         },
+        DatesWidget(schedule: ScheduleMockup.myUser.scheduledDates),
       ],
     );
   }

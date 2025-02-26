@@ -8,17 +8,18 @@ class ScheduleStatusWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
-            children: [
-              Text(
-                text,
-                textAlign: TextAlign.center,
-              ),
-              Image.asset(
-                pathImage,
-                width: 300,
-                height: 300,
-              ),
-            ],
-          );
+      mainAxisAlignment: MainAxisAlignment.start,
+      children: [
+        Text(
+          text,
+          textAlign: TextAlign.center,
+        ),
+        Image.asset(
+          pathImage,
+          width: 300,
+          height: 300,
+        ),
+       ],
+      );
   }
 }

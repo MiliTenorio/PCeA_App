@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
 import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 import 'package:pcea_app/features/schedule/presentation/pages/schedule_page.dart';
-import 'package:pcea_app/features/schedule/presentation/widgets/scheduled_dates.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/schedule.dart';
 
 void main() {
   runApp(const MyApp());
@@ -43,19 +43,23 @@ class _MyHomePageState extends State<MyHomePage> {
         flexibleSpace: Image.asset("lib/core/assets/pattern.png", fit: BoxFit.cover),
         title: Text(widget.title, style: TextStyle(fontWeight: FontWeight.w700,),),
       ),
-      body: Center(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-        children: [
-          ScheduledDates(),
-          TextButton(onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => SchedulePage()),
-              );
-            }, child: Text("Minha disponibilidade"),),
-          ],
+      body: SingleChildScrollView(
+        child: Center(
+          child: Padding(
+            padding: EdgeInsets.symmetric(horizontal: 20, vertical:40),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Schedule(),
+              TextButton(onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => SchedulePage()),
+                  );
+                }, child: Text("Disponibilidade"),),
+              ],
+            ),
+          ),
         ),
       ),
     );
