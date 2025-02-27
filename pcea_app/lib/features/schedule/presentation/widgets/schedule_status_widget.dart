@@ -14,11 +14,14 @@ class ScheduleStatusWidget extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
         ),
+        SizedBox(height: 15,),
         Image.asset(
           pathImage,
-          width: 300,
-          height: 300,
+          width: 150,
+          height: 150,
         ),
+        SizedBox(height: 15,),
+
        ],
       );
   }

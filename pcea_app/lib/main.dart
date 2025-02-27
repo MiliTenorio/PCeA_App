@@ -48,7 +48,7 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Padding(
             padding: EdgeInsets.symmetric(horizontal: 20, vertical:40),
             child: Column(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               Schedule(),
               TextButton(onPressed: () {
@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     context,
                     MaterialPageRoute(builder: (context) => SchedulePage()),
                   );
-                }, child: Text("Disponibilidade"),),
+                }, child: Text("Minha disponibilidade"),),
               ],
             ),
           ),

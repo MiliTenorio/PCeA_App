@@ -12,12 +12,9 @@ class DatesWidget extends StatelessWidget {
 
     final List<DateTime> allDates = schedule.expand((s) => s.selectedDates).toList();
 
-    return Container(
-      decoration: BoxDecoration(
-              color: AppColors.yellowLight,
-              borderRadius: BorderRadius.circular(8),
-            ),
+    return SizedBox(
       height: 150,
+      width: 150,
       child: ListView.builder(
         shrinkWrap: true,
         itemCount: allDates.length,
