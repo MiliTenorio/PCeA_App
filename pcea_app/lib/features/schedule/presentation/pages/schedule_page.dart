@@ -4,6 +4,7 @@ import 'package:pcea_app/core/utils/strings/Strings.dart';
 import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/title_widget.dart';
 import '../../data/datasources/schedule_mockup.dart';
+import 'package:intl/intl.dart';
 
 class SchedulePage extends StatefulWidget {
   const SchedulePage({super.key});
@@ -62,30 +63,33 @@ class _SchedulePageState extends State<SchedulePage> {
                       itemCount: filteredSchedules.length,
                       itemBuilder: (context, index) {
                         final schedule = filteredSchedules[index];
-                        return ExpansionTile(
-                          title: Text(schedule.month,
-                          style: TextStyle(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w600,),
+                        return Theme(
+                          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
+                          child: ExpansionTile(
+                            title: Text(schedule.month,
+                            style: TextStyle(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w600,),
+                            ),
+                            childrenPadding: EdgeInsets.only(left: 10),
+                            trailing: Icon(Icons.arrow_drop_down, color: AppColors.white,),
+                            children: schedule.selectedDates.map((date) {
+                              return CheckboxListTile(
+                                title: Text(DateFormat('dd/MM/yy').format(date), style: TextStyle(color: AppColors.white, fontSize:16,)),
+                                value: selectedDates.contains(date),
+                                onChanged: (checked) {
+                                  setState(() {
+                                    if (checked == true) {
+                                      selectedDates.add(date);
+                                    } else {
+                                      selectedDates.remove(date);
+                                    }
+                                  });
+                                },
+                                activeColor: AppColors.white,
+                                checkColor: AppColors.blue,
+                                side: BorderSide(color: AppColors.white),
+                              );
+                            }).toList(),
                           ),
-                          trailing: Icon(Icons.arrow_drop_down, color: AppColors.white,),
-                          children: schedule.selectedDates.map((date) {
-                            return CheckboxListTile(
-                              title: Text(date.toString().split(' ')[0], style: TextStyle(color: AppColors.white, fontSize:14)),
-                              value: selectedDates.contains(date),
-                              onChanged: (checked) {
-                                setState(() {
-                                  if (checked == true) {
-                                    selectedDates.add(date);
-                                  } else {
-                                    selectedDates.remove(date);
-                                  }
-                                });
-                              },
-                              activeColor: AppColors.white,
-                              checkColor: AppColors.white,
-                             tileColor:  Colors.yellow,
-
-                            );
-                          }).toList(),
                         );
                       },
                       separatorBuilder: (context, index) {
