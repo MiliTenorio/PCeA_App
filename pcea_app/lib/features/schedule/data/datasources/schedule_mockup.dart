@@ -83,7 +83,7 @@ List<Schedule> schedules = [
   ]; 
 
   static User myUser = User(email: "mili@eu.com", name: "Milena", password: "123", 
-  scheduledDates: scheduledDates, availabilitySchedule: availabilitySchedule);
+  scheduledDates: [], availabilitySchedule: availabilitySchedule);
 
   static List<Schedule> scheduledDates = [
     Schedule(month: Strings.march, selectedDates: [

@@ -12,7 +12,7 @@ class DatesWidget extends StatelessWidget {
 
     final List<DateTime> allDates = schedule.expand((s) => s.selectedDates).toList();
 
-    return SizedBox(
+    return allDates.isEmpty ? SizedBox.shrink() : SizedBox(
       height: 150,
       width: 150,
       child: ListView.builder(

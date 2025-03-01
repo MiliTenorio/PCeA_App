@@ -22,7 +22,6 @@ class ScheduleStatusWidget extends StatelessWidget {
           width: 150,
           height: 150,
         ),
-        SizedBox(height: 18,),
        ],
       );
   }

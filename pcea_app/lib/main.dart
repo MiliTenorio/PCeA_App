@@ -3,6 +3,7 @@ import 'package:pcea_app/core/utils/AppColors.dart';
 import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 import 'package:pcea_app/features/schedule/presentation/pages/schedule_page.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/schedule.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/title_widget.dart';
 
 void main() {
   runApp(const MyApp());
@@ -40,11 +41,10 @@ class _MyHomePageState extends State<MyHomePage> {
 Widget build(BuildContext context) {
   return Scaffold(
     appBar: AppBar(
-      backgroundColor: AppColors.orange,
-      title: Text(
-        widget.title,
-        style: TextStyle(fontWeight: FontWeight.w700, color: AppColors.white),
-      ),
+      backgroundColor: AppColors.white,
+      //turn this better updating the image
+      flexibleSpace: SafeArea(child: Align(alignment: Alignment.centerLeft, 
+      child: Transform.scale(scale: 2.5, child: Image.asset('lib/core/assets/logo_pcea.png', width: 280,),)),),
     ),
     body: Container(
       width: MediaQuery.of(context).size.width,
@@ -57,33 +57,9 @@ Widget build(BuildContext context) {
       ),
       child: Column(
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-            child: Container(
-              decoration: BoxDecoration(color: AppColors.purple, borderRadius: BorderRadius.all(Radius.circular(20,),),),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: Text(
-                  'Olá, ${ScheduleMockup.myUser.name}!',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
-                  textAlign: TextAlign.center,
-                ),
-              ),
-            ),
-          ),
+          TitleWidget(title: 'Olá, ${ScheduleMockup.myUser.name}!',),
           Expanded(
-            child: Container(
-              decoration: BoxDecoration(color: AppColors.blue, 
-              borderRadius: BorderRadius.all(Radius.circular(20,),),),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 60, vertical: 30),
-                child: Column(
-                  children: [
-                    Schedule(),
-                  ],
-                ),
-              ),
-            ),
+            child: Schedule(),
           ),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
