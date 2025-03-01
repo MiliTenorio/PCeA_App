@@ -82,7 +82,7 @@ List<Schedule> schedules = [
     ]),
   ]; 
 
-  static User myUser = User(email: "mili@eu.com", name: "Milena", password: "123", 
+  static User myUser = User(email: "mili@eu.com", name: "Milena Tenorio", password: "123", 
   scheduledDates: [], availabilitySchedule: availabilitySchedule);
 
   static List<Schedule> scheduledDates = [

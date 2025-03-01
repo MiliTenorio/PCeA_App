@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
 import 'package:pcea_app/core/utils/strings/Strings.dart';
 import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
+import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/title_widget.dart';
 import '../../data/datasources/schedule_mockup.dart';
 import 'package:intl/intl.dart';
@@ -14,6 +16,8 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _SchedulePageState extends State<SchedulePage> {
+  final UserStore userStore = Modular.get<UserStore>();
+
   List<DateTime> selectedDates = [];
   List<Schedule> schedules = ScheduleMockup().schedules;
 
@@ -27,6 +31,10 @@ class _SchedulePageState extends State<SchedulePage> {
 
       return _compareMonths(scheduleMonthName, currentMonthName);
     }).toList();
+
+    //selectedDates = userStore.user.availabilitySchedule
+    //.map((schedule) => schedule.selectedDates.first)
+    //.toList();
 
     return Scaffold(
     appBar: AppBar(

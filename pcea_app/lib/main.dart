@@ -1,13 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_modular/flutter_modular.dart';
+import 'package:pcea_app/core/main_modular.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
 import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
-import 'package:pcea_app/features/schedule/presentation/pages/schedule_page.dart';
+import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/available_options_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/schedule_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/title_widget.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(ModularApp(module: MainModular(), child: MyApp(),));
 }
 
 class MyApp extends StatelessWidget {
@@ -22,24 +24,25 @@ class MyApp extends StatelessWidget {
   
         colorScheme: ColorScheme.fromSeed(seedColor: AppColors.orange),
       ),
-      home: MyHomePage(title: 'Olá, ${ScheduleMockup.myUser.name}!'),
+      home: MyHomePage(),
     );
   }
 }
 
 class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  final String title;
+  MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  final UserStore userStore = Modular.get<UserStore>();
 
   @override
 Widget build(BuildContext context) {
+  userStore.updateUserName();
+
   return Scaffold(
     appBar: AppBar(
       backgroundColor: AppColors.white,
@@ -58,7 +61,7 @@ Widget build(BuildContext context) {
       ),
       child: Column(
         children: [
-          TitleWidget(title: 'Olá, ${ScheduleMockup.myUser.name}!',),
+          TitleWidget(title: 'Olá, ${userStore.userName}!',),
           Expanded(
             child: ScheduleWidget(),
           ),
