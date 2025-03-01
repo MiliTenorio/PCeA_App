@@ -24,14 +24,15 @@ class DatesWidget extends StatelessWidget {
             margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             padding: EdgeInsets.all(12),
             decoration: BoxDecoration(
-              color: AppColors.blue,
+              color: AppColors.white,
               borderRadius: BorderRadius.circular(8),
             ),
             child: Text(
               "${date.day.toString().padLeft(2, '0')}/"
               "${date.month.toString().padLeft(2, '0')}/"
               "${date.year.toString().substring(2)}", // dd/mm/aa
-              style: TextStyle(color: Colors.white, fontSize: 16),
+              textAlign: TextAlign.center,
+              style: TextStyle(color: AppColors.blue, fontSize: 16, fontWeight: FontWeight.w400,),
             ),
           );
         },

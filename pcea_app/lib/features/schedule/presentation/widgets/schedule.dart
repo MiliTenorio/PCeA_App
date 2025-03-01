@@ -22,7 +22,7 @@ class Schedule extends StatelessWidget {
             text: "Você ainda não foi escalado(a)\nAguarde!", 
             pathImage: "lib/core/assets/wait_for_scheluded.png",),
           ScheduleStatus.scheduled => ScheduleStatusWidget(
-            text: "Você está escalado para:",
+            text: "Você está escalado:",
             pathImage: "lib/core/assets/you_are_scheluded.png",),
         },
         DatesWidget(schedule: ScheduleMockup.myUser.scheduledDates),
