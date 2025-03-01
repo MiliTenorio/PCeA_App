@@ -5,8 +5,8 @@ import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart
 import 'package:pcea_app/features/schedule/presentation/widgets/dates_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/schedule_status_widget.dart';
 
-class Schedule extends StatelessWidget {
-  const Schedule({super.key});
+class ScheduleWidget extends StatelessWidget {
+  const ScheduleWidget({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
 import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 import 'package:pcea_app/features/schedule/presentation/pages/schedule_page.dart';
-import 'package:pcea_app/features/schedule/presentation/widgets/schedule.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/available_options_widget.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/schedule_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/title_widget.dart';
 
 void main() {
@@ -59,28 +60,9 @@ Widget build(BuildContext context) {
         children: [
           TitleWidget(title: 'Olá, ${ScheduleMockup.myUser.name}!',),
           Expanded(
-            child: Schedule(),
+            child: ScheduleWidget(),
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 50, vertical: 20),
-            child: Container(
-              decoration: BoxDecoration(color: AppColors.yellow, borderRadius: BorderRadius.all(Radius.circular(20,),),),
-              child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                child: TextButton(
-                  onPressed: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(builder: (context) => SchedulePage()),
-                    );
-                  },
-                  child: Text("Disponibilidade", 
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
-                  ),
-                ),
-              ),
-            ),
-          ),
+          AvailableOptionsWidget(),
         ],
       ),
     ),
