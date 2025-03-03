@@ -1,4 +1,3 @@
-import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
 
 class User {
   final String email;

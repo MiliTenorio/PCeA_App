@@ -3,7 +3,7 @@ import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
 import 'package:pcea_app/features/schedule/domain/entities/user.dart';
 
 class ScheduleMockup {
-List<Schedule> schedules = [
+static List<Schedule> schedules = [
     Schedule(month: Strings.january, selectedDates: [
       DateTime(2025, 1, 4),
       DateTime(2025, 1, 11),
@@ -83,7 +83,7 @@ List<Schedule> schedules = [
   ]; 
 
   static User myUser = User(email: "mili@eu.com", name: "Milena Tenorio", password: "123", 
-  scheduledDates: [], availableDates: availableDates);
+  scheduledDates: [], availableDates: []);
 
   static List<DateTime> scheduledDates = [
     //Schedule(month: Strings.march, selectedDates: [

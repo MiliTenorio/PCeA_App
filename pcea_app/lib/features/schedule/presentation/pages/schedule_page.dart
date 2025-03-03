@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
-import 'package:pcea_app/core/utils/strings/Strings.dart';
-import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
 import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/availabily_list_dates_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/title_widget.dart';
-import '../../data/datasources/schedule_mockup.dart';
-import 'package:intl/intl.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/send_dates_dialog.dart';
+
 
 class SchedulePage extends StatefulWidget {
-  const SchedulePage({super.key});
+   SchedulePage({super.key});
+    final UserStore userStore = Modular.get<UserStore>();
 
   @override
   _SchedulePageState createState() => _SchedulePageState();
@@ -17,22 +17,18 @@ class SchedulePage extends StatefulWidget {
 
 class _SchedulePageState extends State<SchedulePage> {
 
-  List<DateTime> selectedDates = [];
-  List<Schedule> schedules = ScheduleMockup().schedules;
-
   @override
   Widget build(BuildContext context) {
-    final UserStore userStore = Modular.get<UserStore>();
-    userStore.getAvailableDates();
-    selectedDates = userStore.userAvailableDates;
+    widget.userStore.getAvailableDates();
+    //selectedDates =  widget.userStore.userAvailableDates;
 
-    final currentDate = DateTime.now();
-    final currentMonthName = getMonthName(currentDate.month);
+    //final currentDate = DateTime.now();
+    //final currentMonthName = getMonthName(currentDate.month);
 
-    final filteredSchedules = schedules.where((schedule) {
+    /*final filteredSchedules = schedules.where((schedule) {
       final scheduleMonthName = schedule.month;
       return _compareMonths(scheduleMonthName, currentMonthName);
-    }).toList();
+    }).toList();*/
 
     return Scaffold(
     appBar: AppBar(
@@ -65,43 +61,7 @@ class _SchedulePageState extends State<SchedulePage> {
                 borderRadius: BorderRadius.all(Radius.circular(20,),),),
                   child: Padding(
                       padding: const EdgeInsets.all(15),
-                      child: ListView.separated(
-                      itemCount: filteredSchedules.length,
-                      itemBuilder: (context, index) {
-                        final schedule = filteredSchedules[index];
-                        return Theme(
-                          data: Theme.of(context).copyWith(dividerColor: Colors.transparent),
-                          child: ExpansionTile(
-                            title: Text(schedule.month,
-                            style: TextStyle(color: AppColors.white, fontSize: 16, fontWeight: FontWeight.w600,),
-                            ),
-                            childrenPadding: EdgeInsets.only(left: 10),
-                            trailing: Icon(Icons.arrow_drop_down, color: AppColors.white,),
-                            children: schedule.selectedDates.map((date) {
-                              return CheckboxListTile(
-                                title: Text(DateFormat('dd/MM/yy').format(date), style: TextStyle(color: AppColors.white, fontSize:16,)),
-                                value: selectedDates.contains(date),
-                                onChanged: (checked) {
-                                  setState(() {
-                                    if (checked == true) {
-                                      selectedDates.add(date);
-                                    } else {
-                                      selectedDates.remove(date);
-                                    }
-                                  });
-                                },
-                                activeColor: AppColors.white,
-                                checkColor: AppColors.blue,
-                                side: BorderSide(color: AppColors.white),
-                              );
-                            }).toList(),
-                          ),
-                        );
-                      },
-                      separatorBuilder: (context, index) {
-                        return Divider(color: AppColors.white,);
-                      },
-                    ),
+                      child: AvailabilyListDatesWidget(),
                   ),
                 ),
               ),
@@ -113,7 +73,7 @@ class _SchedulePageState extends State<SchedulePage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: TextButton(
-                  onPressed: () => userStore.updateAvailableDatesSchedule(selectedDates),
+                  onPressed: () => showSendDatesDialog(context),
                   child: Text("Enviar", 
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
                   ),
@@ -127,7 +87,7 @@ class _SchedulePageState extends State<SchedulePage> {
     );
   }
 
-   String getMonthName(int month) {
+  /*String getMonthName(int month) {
     const monthNames = Strings.months;
     return monthNames[month - 1];
   }
@@ -142,5 +102,5 @@ class _SchedulePageState extends State<SchedulePage> {
   int getMonthIndex(String monthName) {
     const monthNames = Strings.months;
     return monthNames.indexOf(monthName);
-  }
+  }*/
 }

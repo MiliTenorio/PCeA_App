@@ -44,19 +44,15 @@ mixin _$UserStore on _UserStore, Store {
       Atom(name: '_UserStore.userAvailableDates', context: context);
 
   @override
-  List<DateTime> get userAvailableDates {
+  ObservableList<DateTime> get userAvailableDates {
     _$userAvailableDatesAtom.reportRead();
     return super.userAvailableDates;
   }
 
-  bool _userAvailableDatesIsInitialized = false;
-
   @override
-  set userAvailableDates(List<DateTime> value) {
-    _$userAvailableDatesAtom.reportWrite(value,
-        _userAvailableDatesIsInitialized ? super.userAvailableDates : null, () {
+  set userAvailableDates(ObservableList<DateTime> value) {
+    _$userAvailableDatesAtom.reportWrite(value, super.userAvailableDates, () {
       super.userAvailableDates = value;
-      _userAvailableDatesIsInitialized = true;
     });
   }
 
@@ -86,11 +82,33 @@ mixin _$UserStore on _UserStore, Store {
   }
 
   @override
-  void updateAvailableDatesSchedule(List<DateTime> newAvailableDates) {
+  void updateAvailableDatesSchedule() {
     final _$actionInfo = _$_UserStoreActionController.startAction(
         name: '_UserStore.updateAvailableDatesSchedule');
     try {
-      return super.updateAvailableDatesSchedule(newAvailableDates);
+      return super.updateAvailableDatesSchedule();
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void toggleDateSelection(DateTime date) {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.toggleDateSelection');
+    try {
+      return super.toggleDateSelection(date);
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void clearSelection() {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.clearSelection');
+    try {
+      return super.clearSelection();
     } finally {
       _$_UserStoreActionController.endAction(_$actionInfo);
     }

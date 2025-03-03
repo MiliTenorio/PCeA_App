@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
 
 class DatesWidget extends StatelessWidget {
-  DatesWidget({super.key, required this.schedule});
-  List<DateTime> schedule;
+  const DatesWidget({super.key, required this.schedule});
+  final List<DateTime> schedule;
 
 @override
   Widget build(BuildContext context) {

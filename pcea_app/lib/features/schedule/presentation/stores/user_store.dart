@@ -1,6 +1,5 @@
 import 'package:mobx/mobx.dart';
 import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
-import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
 import 'package:pcea_app/features/schedule/domain/entities/user.dart';
 
 part 'user_store.g.dart';
@@ -15,7 +14,7 @@ abstract class _UserStore with Store {
   String userName = "";
 
   @observable
-  late List<DateTime> userAvailableDates;
+  ObservableList<DateTime> userAvailableDates = ObservableList<DateTime>();
 
   //In the first verion, I dont will implement this yet
   //@action
@@ -37,14 +36,34 @@ abstract class _UserStore with Store {
   void updateUserName() {userName = user.name;}
 
   @action
-  void getAvailableDates() { userAvailableDates = user.availableDates; }
+  void getAvailableDates() {   
+    userAvailableDates.clear();
+    userAvailableDates.addAll(user.availableDates);
+  }
 
   @action
-  void updateAvailableDatesSchedule(List<DateTime> newAvailableDates) {
+  void updateAvailableDatesSchedule() {
     //user = user.copyWith(availableDates: newAvailableDates);
     print("\n### New Available Dates:\n");
-    for(DateTime i in newAvailableDates){
+    for(DateTime i in userAvailableDates){
       print(i.toString());
     }
+  }
+
+  @action
+  void toggleDateSelection(DateTime date) {
+    if (userAvailableDates.contains(date)) {
+      userAvailableDates.removeWhere((d) => d == date);
+      print('>> Remove $date');
+    } else {
+      userAvailableDates.add(date);
+      print('>> Add $date');
+    }
+  }
+
+    @action
+  void clearSelection() {
+    print('>> Clear selection');
+    userAvailableDates.clear();
   }
 }

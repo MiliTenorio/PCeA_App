@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pcea_app/core/main_modular.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
-import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/available_options_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/schedule_widget.dart';
@@ -30,7 +29,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({super.key});
+  const MyHomePage({super.key});
 
   @override
   State<MyHomePage> createState() => _MyHomePageState();
