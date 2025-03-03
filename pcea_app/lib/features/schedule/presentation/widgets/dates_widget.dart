@@ -1,16 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
-import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
 
 class DatesWidget extends StatelessWidget {
   DatesWidget({super.key, required this.schedule});
-  List<Schedule> schedule;
+  List<DateTime> schedule;
 
 @override
   Widget build(BuildContext context) {
     if (schedule.isEmpty) return SizedBox.shrink();
 
-    final List<DateTime> allDates = schedule.expand((s) => s.selectedDates).toList();
+    final List<DateTime> allDates = schedule.toList();
 
     return allDates.isEmpty ? SizedBox.shrink() : SizedBox(
       height: 150,

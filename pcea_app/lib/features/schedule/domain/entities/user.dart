@@ -4,25 +4,25 @@ class User {
   final String email;
   final String name;
   final String password;
-  final List<Schedule> scheduledDates;
-  final List<Schedule> availabilitySchedule;
+  final List<DateTime> scheduledDates;
+  final List<DateTime> availableDates;
 
   User({required this.email, required this.name, required this.password, 
-  required this.scheduledDates, required this.availabilitySchedule,});
+  required this.scheduledDates, required this.availableDates,});
 
-    User copyWith({
+  User copyWith({
     String? email,
     String? name,
     String? password,
-    List<Schedule>? scheduledDates,
-    List<Schedule>? availabilitySchedule,
+    List<DateTime>? scheduledDates,
+    List<DateTime>? availableDates,
   }) {
     return User(
       email: email ?? this.email,
       name: name ?? this.name,
       password: password ?? this.password,
       scheduledDates: scheduledDates ?? this.scheduledDates,
-      availabilitySchedule: availabilitySchedule ?? this.availabilitySchedule,
+      availableDates: availableDates ?? this.availableDates,
     );
   }
 }

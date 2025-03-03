@@ -60,7 +60,7 @@ class ScheduleWidget extends StatelessWidget {
   }
 
    ScheduleStatus getUserScheduleStatus() {
-    if (ScheduleMockup.myUser.availabilitySchedule.isEmpty) {
+    if (ScheduleMockup.myUser.availableDates.isEmpty) {
       return ScheduleStatus.noAvailability;
     } else if (ScheduleMockup.myUser.scheduledDates.isEmpty) {
       return ScheduleStatus.waitingForSchedule;

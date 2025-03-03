@@ -16,25 +16,23 @@ class SchedulePage extends StatefulWidget {
 }
 
 class _SchedulePageState extends State<SchedulePage> {
-  final UserStore userStore = Modular.get<UserStore>();
 
   List<DateTime> selectedDates = [];
   List<Schedule> schedules = ScheduleMockup().schedules;
 
   @override
   Widget build(BuildContext context) {
+    final UserStore userStore = Modular.get<UserStore>();
+    userStore.getAvailableDates();
+    selectedDates = userStore.userAvailableDates;
+
     final currentDate = DateTime.now();
     final currentMonthName = getMonthName(currentDate.month);
 
     final filteredSchedules = schedules.where((schedule) {
       final scheduleMonthName = schedule.month;
-
       return _compareMonths(scheduleMonthName, currentMonthName);
     }).toList();
-
-    //selectedDates = userStore.user.availabilitySchedule
-    //.map((schedule) => schedule.selectedDates.first)
-    //.toList();
 
     return Scaffold(
     appBar: AppBar(
@@ -115,7 +113,7 @@ class _SchedulePageState extends State<SchedulePage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
                 child: TextButton(
-                  onPressed: () { },
+                  onPressed: () => userStore.updateAvailableDatesSchedule(selectedDates),
                   child: Text("Enviar", 
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold, color: AppColors.white),
                   ),

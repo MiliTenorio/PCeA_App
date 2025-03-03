@@ -40,6 +40,26 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
+  late final _$userAvailableDatesAtom =
+      Atom(name: '_UserStore.userAvailableDates', context: context);
+
+  @override
+  List<DateTime> get userAvailableDates {
+    _$userAvailableDatesAtom.reportRead();
+    return super.userAvailableDates;
+  }
+
+  bool _userAvailableDatesIsInitialized = false;
+
+  @override
+  set userAvailableDates(List<DateTime> value) {
+    _$userAvailableDatesAtom.reportWrite(value,
+        _userAvailableDatesIsInitialized ? super.userAvailableDates : null, () {
+      super.userAvailableDates = value;
+      _userAvailableDatesIsInitialized = true;
+    });
+  }
+
   late final _$_UserStoreActionController =
       ActionController(name: '_UserStore', context: context);
 
@@ -55,11 +75,22 @@ mixin _$UserStore on _UserStore, Store {
   }
 
   @override
-  void updateAvailabilitySchedule(List<Schedule> newAvailability) {
+  void getAvailableDates() {
     final _$actionInfo = _$_UserStoreActionController.startAction(
-        name: '_UserStore.updateAvailabilitySchedule');
+        name: '_UserStore.getAvailableDates');
     try {
-      return super.updateAvailabilitySchedule(newAvailability);
+      return super.getAvailableDates();
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void updateAvailableDatesSchedule(List<DateTime> newAvailableDates) {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.updateAvailableDatesSchedule');
+    try {
+      return super.updateAvailableDatesSchedule(newAvailableDates);
     } finally {
       _$_UserStoreActionController.endAction(_$actionInfo);
     }
@@ -69,7 +100,8 @@ mixin _$UserStore on _UserStore, Store {
   String toString() {
     return '''
 user: ${user},
-userName: ${userName}
+userName: ${userName},
+userAvailableDates: ${userAvailableDates}
     ''';
   }
 }

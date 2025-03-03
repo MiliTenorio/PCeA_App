@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
-import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 
 class TitleWidget extends StatelessWidget {
   TitleWidget({super.key, required this.title});

@@ -83,44 +83,44 @@ List<Schedule> schedules = [
   ]; 
 
   static User myUser = User(email: "mili@eu.com", name: "Milena Tenorio", password: "123", 
-  scheduledDates: [], availabilitySchedule: availabilitySchedule);
+  scheduledDates: [], availableDates: availableDates);
 
-  static List<Schedule> scheduledDates = [
-    Schedule(month: Strings.march, selectedDates: [
+  static List<DateTime> scheduledDates = [
+    //Schedule(month: Strings.march, selectedDates: [
       DateTime(2025, 3, 1),
       DateTime(2025, 3, 15),
       DateTime(2025, 3, 29),
-    ]),
-        Schedule(month: Strings.march, selectedDates: [
+    //]),
+    //    Schedule(month: Strings.march, selectedDates: [
       DateTime(2025, 4, 1),
       DateTime(2025, 4, 15),
       DateTime(2025, 4, 29),
-    ]),
-        Schedule(month: Strings.march, selectedDates: [
+    //]),
+    //    Schedule(month: Strings.march, selectedDates: [
       DateTime(2025, 5, 1),
       DateTime(2025, 5, 15),
       DateTime(2025, 5, 29),
-    ]),
+    //]),
   ]; 
 
-  static List<Schedule> availabilitySchedule = [
-    Schedule(month: Strings.january, selectedDates: [
+  static List<DateTime> availableDates = [
+  //  Schedule(month: Strings.january, selectedDates: [
       DateTime(2025, 1, 4),
       DateTime(2025, 1, 11),
       DateTime(2025, 1, 18),
       DateTime(2025, 1, 25),
-    ]),
-    Schedule(month: Strings.march, selectedDates: [
+    //]),
+    //Schedule(month: Strings.march, selectedDates: [
       DateTime(2025, 3, 1),
       DateTime(2025, 3, 15),
       DateTime(2025, 3, 29),
-    ]),
-    Schedule(month: Strings.may, selectedDates: [
+    //]),
+    //Schedule(month: Strings.may, selectedDates: [
       DateTime(2025, 5, 3),
       DateTime(2025, 5, 10),
       DateTime(2025, 5, 17),
       DateTime(2025, 5, 24),
       DateTime(2025, 5, 31),
-    ]),
+    //]),
   ]; 
 }

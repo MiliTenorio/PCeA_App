@@ -14,6 +14,9 @@ abstract class _UserStore with Store {
   @observable
   String userName = "";
 
+  @observable
+  late List<DateTime> userAvailableDates;
+
   //In the first verion, I dont will implement this yet
   //@action
   //void updateName(String newName) {
@@ -34,7 +37,14 @@ abstract class _UserStore with Store {
   void updateUserName() {userName = user.name;}
 
   @action
-  void updateAvailabilitySchedule(List<Schedule> newAvailability) {
-    user = user.copyWith(availabilitySchedule: newAvailability);
+  void getAvailableDates() { userAvailableDates = user.availableDates; }
+
+  @action
+  void updateAvailableDatesSchedule(List<DateTime> newAvailableDates) {
+    //user = user.copyWith(availableDates: newAvailableDates);
+    print("\n### New Available Dates:\n");
+    for(DateTime i in newAvailableDates){
+      print(i.toString());
+    }
   }
 }
