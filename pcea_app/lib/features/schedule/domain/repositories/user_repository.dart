@@ -1,6 +1,8 @@
-import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
+import 'package:pcea_app/features/schedule/domain/entities/user.dart';
 
 abstract class UserRepository {
-  Future<String> userName();
-  Future<void> updateAvailableDates(List<Schedule> availableDates);
+  Future<User> getUser();
+  Future<void> updateUser(User user);
+  Future<void> updateAvailableDates(List<DateTime> newAvailableDates);
+  Future<void> updateScheduledDates(List<DateTime> newScheduledDates);
 }
