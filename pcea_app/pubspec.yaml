@@ -72,6 +72,7 @@ flutter:
     - lib/core/assets/wait_for_scheluded.png
     - lib/core/assets/you_are_scheluded.png
     - lib/core/assets/logo_pcea.png
+    - lib/core/assets/logo_pcea_new.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/to/resolution-aware-images

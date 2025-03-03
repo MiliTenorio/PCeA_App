@@ -1,4 +1,5 @@
 import 'package:mobx/mobx.dart';
+import 'package:pcea_app/core/utils/strings/Enums.dart';
 import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 import 'package:pcea_app/features/schedule/domain/entities/user.dart';
 
@@ -15,6 +16,9 @@ abstract class _UserStore with Store {
 
   @observable
   ObservableList<DateTime> userAvailableDates = ObservableList<DateTime>();
+
+  @observable
+  ObservableList<DateTime> userScheduledDates = ObservableList<DateTime>();
 
   //In the first verion, I dont will implement this yet
   //@action
@@ -39,6 +43,12 @@ abstract class _UserStore with Store {
   void getAvailableDates() {   
     userAvailableDates.clear();
     userAvailableDates.addAll(user.availableDates);
+  }
+  
+  @action
+  void getScheduledDates() {   
+    userScheduledDates.clear();
+    userScheduledDates.addAll(user.scheduledDates);
   }
 
   @action
@@ -65,5 +75,16 @@ abstract class _UserStore with Store {
   void clearSelection() {
     print('>> Clear selection');
     userAvailableDates.clear();
+  }
+
+  @computed
+  ScheduleStatus get scheduleStatus {
+    if (user.availableDates.isEmpty) {
+      return ScheduleStatus.noAvailability;
+    } else if (user.scheduledDates.isEmpty) {
+      return ScheduleStatus.waitingForSchedule;
+    } else {
+      return ScheduleStatus.scheduled;
+    }
   }
 }
