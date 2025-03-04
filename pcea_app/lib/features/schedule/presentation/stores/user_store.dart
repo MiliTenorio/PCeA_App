@@ -1,18 +1,18 @@
 import 'package:mobx/mobx.dart';
 import 'package:pcea_app/core/utils/strings/Enums.dart';
-import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 import 'package:pcea_app/features/schedule/domain/entities/user.dart';
+import 'package:pcea_app/features/schedule/domain/repositories/user_repository.dart';
 
 part 'user_store.g.dart';
 
 class UserStore = _UserStore with _$UserStore;
 
 abstract class _UserStore with Store {
-  @observable
-  User user = ScheduleMockup.myUser;
+  final UserRepository repository;
+  _UserStore(this.repository); 
 
   @observable
-  String userName = "";
+  User user = User(email: "", name: "", password: "", scheduledDates: [], availableDates: []);
 
   @observable
   ObservableList<DateTime> userAvailableDates = ObservableList<DateTime>();
@@ -20,24 +20,14 @@ abstract class _UserStore with Store {
   @observable
   ObservableList<DateTime> userScheduledDates = ObservableList<DateTime>();
 
-  //In the first verion, I dont will implement this yet
-  //@action
-  //void updateName(String newName) {
-  //  user = user.copyWith(name: newName);
-  //}
-
-  //@action
-  //void updateEmail(String newEmail) {
-  //  user = user.copyWith(email: newEmail);
-  //}
-
-  //@action
-  //void updateScheduledDates(List<Schedule> newScheduled) {
-  //  user = user.copyWith(scheduledDates: newScheduled);
-  //}
-
   @action
-  void updateUserName() {userName = user.name;}
+  Future<void> loadUser() async {
+    user = await repository.getUser();
+    userScheduledDates.clear();
+    userAvailableDates.clear();
+    userAvailableDates.addAll(user.availableDates);
+    userScheduledDates.addAll(user.scheduledDates);
+  }
 
   @action
   void getAvailableDates() {   
@@ -53,10 +43,9 @@ abstract class _UserStore with Store {
 
   @action
   void updateAvailableDatesSchedule() {
-    //user = user.copyWith(availableDates: newAvailableDates);
-    print("\n### New Available Dates:\n");
+    print("\n>> ### New Available Dates:\n");
     for(DateTime i in userAvailableDates){
-      print(i.toString());
+      print(">> $i");
     }
   }
 

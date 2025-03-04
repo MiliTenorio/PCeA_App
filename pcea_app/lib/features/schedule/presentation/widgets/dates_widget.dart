@@ -9,7 +9,8 @@ class DatesWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     if (schedule.isEmpty) return SizedBox.shrink();
 
-    final List<DateTime> allDates = schedule.toList();
+    final today = DateTime.now();
+    final List<DateTime> allDates = schedule.where((date) => date.toLocal().difference(today).inDays >= 0).toList()..sort();
 
     return SizedBox(
       height: 150,

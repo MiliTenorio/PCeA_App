@@ -8,12 +8,24 @@ import 'package:pcea_app/features/schedule/domain/entities/schedules.dart';
 import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
 
 class AvailabilyListDatesWidget extends StatelessWidget {
-  final List<Schedule> schedules = ScheduleMockup.schedules;
   AvailabilyListDatesWidget({super.key});
   final UserStore userStore = Modular.get<UserStore>();
 
+  final today = DateTime.now();
+
    @override
     Widget build(BuildContext context) {
+      final List<Schedule> schedules = ScheduleMockup.schedules
+        .map((schedule) => Schedule(
+              month: schedule.month,
+              selectedDates: schedule.selectedDates
+                  .where((date) => !date.isBefore(today))
+                  .toList()
+                ..sort((a, b) => a.compareTo(b)),
+            ))
+        .where((schedule) => schedule.selectedDates.isNotEmpty)
+        .toList();
+
       return Observer(
         builder: (_) {
           return ListView.separated(

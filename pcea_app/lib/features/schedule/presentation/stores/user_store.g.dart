@@ -32,22 +32,6 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  late final _$userNameAtom =
-      Atom(name: '_UserStore.userName', context: context);
-
-  @override
-  String get userName {
-    _$userNameAtom.reportRead();
-    return super.userName;
-  }
-
-  @override
-  set userName(String value) {
-    _$userNameAtom.reportWrite(value, super.userName, () {
-      super.userName = value;
-    });
-  }
-
   late final _$userAvailableDatesAtom =
       Atom(name: '_UserStore.userAvailableDates', context: context);
 
@@ -80,19 +64,16 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
-  late final _$_UserStoreActionController =
-      ActionController(name: '_UserStore', context: context);
+  late final _$loadUserAsyncAction =
+      AsyncAction('_UserStore.loadUser', context: context);
 
   @override
-  void updateUserName() {
-    final _$actionInfo = _$_UserStoreActionController.startAction(
-        name: '_UserStore.updateUserName');
-    try {
-      return super.updateUserName();
-    } finally {
-      _$_UserStoreActionController.endAction(_$actionInfo);
-    }
+  Future<void> loadUser() {
+    return _$loadUserAsyncAction.run(() => super.loadUser());
   }
+
+  late final _$_UserStoreActionController =
+      ActionController(name: '_UserStore', context: context);
 
   @override
   void getAvailableDates() {
@@ -153,7 +134,6 @@ mixin _$UserStore on _UserStore, Store {
   String toString() {
     return '''
 user: ${user},
-userName: ${userName},
 userAvailableDates: ${userAvailableDates},
 userScheduledDates: ${userScheduledDates},
 scheduleStatus: ${scheduleStatus}

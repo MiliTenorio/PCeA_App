@@ -12,7 +12,7 @@ class UserRepositoryImpl implements UserRepository {
     try {
       return await _dataSource.getUser();
     } catch (e) {
-      rethrow; // Tratar erro
+      rethrow; 
     }
   }
 

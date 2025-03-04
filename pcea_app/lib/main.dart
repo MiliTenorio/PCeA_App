@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pcea_app/core/main_modular.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
@@ -40,7 +41,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
 Widget build(BuildContext context) {
-  userStore.updateUserName();
+  userStore.loadUser();
 
   return Scaffold(
     appBar: AppBar(
@@ -58,14 +59,18 @@ Widget build(BuildContext context) {
           fit: BoxFit.cover,
         ),
       ),
-      child: Column(
-        children: [
-          TitleWidget(title: 'Olá, ${userStore.userName}!',),
-          Expanded(
-            child: ScheduleWidget(),
-          ),
-          AvailableOptionsWidget(),
-        ],
+      child: Observer(
+        builder: (_) {
+          return Column(
+            children: [
+              TitleWidget(title: 'Olá, ${userStore.user.name}!',),
+              Expanded(
+                child: ScheduleWidget(),
+              ),
+              AvailableOptionsWidget(),
+            ],
+          );
+        }
       ),
     ),
   );
