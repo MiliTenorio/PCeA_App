@@ -5,6 +5,7 @@ import 'package:pcea_app/core/main_modular.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
 import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/available_options_widget.dart';
+import 'package:pcea_app/features/schedule/presentation/widgets/custom_app_bar.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/schedule_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/title_widget.dart';
 
@@ -44,12 +45,7 @@ Widget build(BuildContext context) {
   userStore.loadUser();
 
   return Scaffold(
-    appBar: AppBar(
-      backgroundColor: AppColors.white,
-      //turn this better updating the image
-      flexibleSpace: SafeArea(child: Align(alignment: Alignment.centerLeft, 
-      child: Transform.scale(scale: 2.5, child: Image.asset('lib/core/assets/logo_pcea.png', width: 280,),)),),
-    ),
+    appBar: CustomAppBar(),
     body: Container(
       width: MediaQuery.of(context).size.width,
       height: MediaQuery.of(context).size.height,
