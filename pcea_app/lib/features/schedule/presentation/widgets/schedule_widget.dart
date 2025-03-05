@@ -3,7 +3,6 @@ import 'package:flutter_mobx/flutter_mobx.dart';
 import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
 import 'package:pcea_app/core/utils/strings/Enums.dart';
-import 'package:pcea_app/features/schedule/data/datasources/schedule_mockup.dart';
 import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/dates_widget.dart';
 import 'package:pcea_app/features/schedule/presentation/widgets/schedule_status_widget.dart';
@@ -34,7 +33,7 @@ class ScheduleWidget extends StatelessWidget {
                             children: [
                               ScheduleStatusWidget(text: _getStatusMessage(status), pathImage: _getStatusImage(status)),
                               if (status == ScheduleStatus.scheduled)
-                                  DatesWidget(schedule: userStore.user.scheduledDates),
+                                  DatesWidget(/*schedule: userStore.user.scheduledDates*/),
                             ],
                           ),
                         ],

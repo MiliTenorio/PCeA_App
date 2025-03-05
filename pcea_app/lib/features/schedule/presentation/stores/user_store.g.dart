@@ -64,6 +64,22 @@ mixin _$UserStore on _UserStore, Store {
     });
   }
 
+  late final _$allDatesAtom =
+      Atom(name: '_UserStore.allDates', context: context);
+
+  @override
+  List<DateTime> get allDates {
+    _$allDatesAtom.reportRead();
+    return super.allDates;
+  }
+
+  @override
+  set allDates(List<DateTime> value) {
+    _$allDatesAtom.reportWrite(value, super.allDates, () {
+      super.allDates = value;
+    });
+  }
+
   late final _$loadUserAsyncAction =
       AsyncAction('_UserStore.loadUser', context: context);
 
@@ -74,6 +90,17 @@ mixin _$UserStore on _UserStore, Store {
 
   late final _$_UserStoreActionController =
       ActionController(name: '_UserStore', context: context);
+
+  @override
+  void loadAllDates() {
+    final _$actionInfo = _$_UserStoreActionController.startAction(
+        name: '_UserStore.loadAllDates');
+    try {
+      return super.loadAllDates();
+    } finally {
+      _$_UserStoreActionController.endAction(_$actionInfo);
+    }
+  }
 
   @override
   void getAvailableDates() {
@@ -136,6 +163,7 @@ mixin _$UserStore on _UserStore, Store {
 user: ${user},
 userAvailableDates: ${userAvailableDates},
 userScheduledDates: ${userScheduledDates},
+allDates: ${allDates},
 scheduleStatus: ${scheduleStatus}
     ''';
   }

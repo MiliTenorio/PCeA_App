@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
 import 'package:pcea_app/core/utils/AppColors.dart';
+import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
+import 'package:flutter_modular/flutter_modular.dart';
 
 class DatesWidget extends StatelessWidget {
-  const DatesWidget({super.key, required this.schedule});
-  final List<DateTime> schedule;
+  DatesWidget({super.key/*, required this.schedule*/});
+  //final List<DateTime> schedule;
+  final UserStore userStore = Modular.get<UserStore>();
 
 @override
   Widget build(BuildContext context) {
-    if (schedule.isEmpty) return SizedBox.shrink();
-
-    final today = DateTime.now();
-    final List<DateTime> allDates = schedule.where((date) => date.toLocal().difference(today).inDays >= 0).toList()..sort();
+    userStore.loadAllDates();
+    if (userStore.allDates.isEmpty) return SizedBox.shrink();
 
     return SizedBox(
       height: 150,
       width: 150,
       child: ListView.builder(
         shrinkWrap: true,
-        itemCount: allDates.length,
+        itemCount: userStore.allDates.length,
         itemBuilder: (context, index) {
-          final date = allDates[index];
+          final date = userStore.allDates[index];
           return Container(
             margin: EdgeInsets.symmetric(vertical: 4, horizontal: 8),
             padding: EdgeInsets.all(12),

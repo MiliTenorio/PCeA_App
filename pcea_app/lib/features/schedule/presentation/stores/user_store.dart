@@ -20,6 +20,20 @@ abstract class _UserStore with Store {
   @observable
   ObservableList<DateTime> userScheduledDates = ObservableList<DateTime>();
 
+  @observable
+  List<DateTime> allDates = [];
+
+  @action
+  void loadAllDates() {
+    final today = DateTime.now();
+    allDates = user.scheduledDates
+        .where((date) => date.toLocal().difference(today).inDays >= 0)
+        .toList()
+      ..sort();
+
+    //scheduleNotifications(allDates);
+  }
+
   @action
   Future<void> loadUser() async {
     user = await repository.getUser();
