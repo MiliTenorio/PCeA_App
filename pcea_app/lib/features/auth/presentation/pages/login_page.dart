@@ -108,7 +108,9 @@ class _LoginPageState extends State<LoginPage> {
                                         await authStore.login(email, senha);
 
                                         if (authStore.isLoggedIn) {
-                                          Modular.to.navigate('/home');
+                                          Modular.to.pushReplacementNamed(
+                                            '/home/',
+                                          );
                                         } else if (authStore.errorMessage !=
                                             null) {
                                           ScaffoldMessenger.of(
