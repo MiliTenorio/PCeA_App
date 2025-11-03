@@ -1,24 +1,17 @@
 import 'package:flutter_modular/flutter_modular.dart';
-import 'package:pcea_app/features/schedule/data/datasources/user_datasource.dart';
-import 'package:pcea_app/features/schedule/data/repositories/user_repository_impl.dart';
-import 'package:pcea_app/features/schedule/domain/repositories/user_repository.dart';
-import 'package:pcea_app/features/schedule/domain/usecases/update_available_dates_usecase.dart';
-import 'package:pcea_app/features/schedule/presentation/stores/user_store.dart';
+import 'package:pcea_app/features/auth/auth_module.dart';
+import 'package:pcea_app/features/main/presentation/main_module.dart';
+import 'package:pcea_app/features/schedule_status/schedule_module.dart';
+import 'package:pcea_app/features/voluntario/voluntario_module.dart';
 
 class MainModular extends Module {
   @override
-  final List<Bind> binds = [
-    Bind.singleton((i) => UserDataSource(),),
-    Bind.singleton((i) => UserRepositoryImpl(i.get<UserDataSource>()),),
-    Bind.singleton((i) => UpdateAvailableDatesUseCase(i.get<UserRepository>()),),
-    Bind.singleton((i) => UserStore(i.get(),),),
+  final List<Bind> binds = [];
+  @override
+  final List<ModularRoute> routes = [
+    ModuleRoute('/', module: AuthModule()),
+    ModuleRoute('/home', module: MainModule()),
+    ModuleRoute('/schedule', module: ScheduleModule()),
+    ModuleRoute('/volunteer', module: VoluntarioModule()),
   ];
-
-  /*@override
-  List<ModularRoute> getRoutes() {
-    return [
-      ChildRoute('/', child:(_, args) => MyHomePage()),
-      ChildRoute('/schedule', child:(_, args) => SchedulePage()),
-    ];
-  }*/
 }
