@@ -1,6 +1,4 @@
-import 'package:pcea_app/features/auth/data/models/user_model.dart';
-
-import '../../domain/entities/usuario.dart';
+import '../../domain/entities/auth_token.dart';
 import '../../domain/repositories/auth_repository.dart';
 import '../datasources/auth_remote_datasource.dart';
 
@@ -10,8 +8,12 @@ class AuthRepositoryImpl implements AuthRepository {
   AuthRepositoryImpl(this.remoteDataSource);
 
   @override
-  Future<Usuario> login(String email, String senha) async {
-    final json = await remoteDataSource.login(email, senha);
-    return UsuarioModel.fromJson(json); // devolve como entidade do domain
+  Future<AuthToken> login(String email, String password) async {
+    final token = await remoteDataSource.login(
+      email: email,
+      password: password,
+    );
+
+    return AuthToken(token);
   }
 }

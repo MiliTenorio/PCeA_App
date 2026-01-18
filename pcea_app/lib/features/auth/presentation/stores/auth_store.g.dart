@@ -33,19 +33,18 @@ mixin _$AuthStore on _AuthStoreBase, Store {
     });
   }
 
-  late final _$usuarioAtom =
-      Atom(name: '_AuthStoreBase.usuario', context: context);
+  late final _$userAtom = Atom(name: '_AuthStoreBase.user', context: context);
 
   @override
-  Usuario? get usuario {
-    _$usuarioAtom.reportRead();
-    return super.usuario;
+  User? get user {
+    _$userAtom.reportRead();
+    return super.user;
   }
 
   @override
-  set usuario(Usuario? value) {
-    _$usuarioAtom.reportWrite(value, super.usuario, () {
-      super.usuario = value;
+  set user(User? value) {
+    _$userAtom.reportWrite(value, super.user, () {
+      super.user = value;
     });
   }
 
@@ -69,8 +68,8 @@ mixin _$AuthStore on _AuthStoreBase, Store {
       AsyncAction('_AuthStoreBase.login', context: context);
 
   @override
-  Future<void> login(String email, String senha) {
-    return _$loginAsyncAction.run(() => super.login(email, senha));
+  Future<void> login(String email, String password) {
+    return _$loginAsyncAction.run(() => super.login(email, password));
   }
 
   late final _$_AuthStoreBaseActionController =
@@ -91,7 +90,7 @@ mixin _$AuthStore on _AuthStoreBase, Store {
   String toString() {
     return '''
 isLoading: ${isLoading},
-usuario: ${usuario},
+user: ${user},
 errorMessage: ${errorMessage},
 isLoggedIn: ${isLoggedIn}
     ''';

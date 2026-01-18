@@ -1,5 +1,5 @@
-import '../entities/usuario.dart';
+import 'package:pcea_app/features/auth/domain/entities/auth_token.dart';
 
 abstract class AuthRepository {
-  Future<Usuario> login(String email, String senha);
+  Future<AuthToken> login(String email, String password);
 }

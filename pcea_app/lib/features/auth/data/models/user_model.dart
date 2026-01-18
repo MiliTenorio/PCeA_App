@@ -1,31 +1,24 @@
-import '../../domain/entities/usuario.dart';
+import '../../domain/entities/user.dart';
+import 'package:pcea_app/core/utils/enums.dart';
 
-class UsuarioModel extends Usuario {
-  UsuarioModel({
-    super.id,
+class UserModel extends User {
+  const UserModel({
     required super.email,
-    required super.senha,
     required super.role,
-    super.errorMessage,
   });
 
-  factory UsuarioModel.fromJson(Map<String, dynamic> json) {
-    return UsuarioModel(
-      id: json['id']?.toInt(),
+  factory UserModel.fromJson(Map<String, dynamic> json) {
+    return UserModel(
       email: json['email'],
-      senha: '', // senha não retorna da API
       role: UserRole.values.firstWhere(
-        (r) => r.toString().split('.').last == json['role'],
+        (r) => r.name == json['role'],
       ),
-      errorMessage: json['errorMessage'],
     );
   }
 
-  @override
-  Map<String, dynamic> toJson() => {
-    'id': id,
-    'email': email,
-    'senha': senha,
-    'role': role.toString().split('.').last,
-  };
+  User toEntity() => User(
+    email: email,
+    role: role,
+  );
 }
+
