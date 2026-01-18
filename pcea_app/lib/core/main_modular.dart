@@ -2,7 +2,6 @@ import 'package:flutter_modular/flutter_modular.dart';
 import 'package:pcea_app/features/auth/auth_module.dart';
 import 'package:pcea_app/features/main/presentation/main_module.dart';
 import 'package:pcea_app/features/schedule_status/schedule_module.dart';
-import 'package:pcea_app/features/voluntario/voluntario_module.dart';
 
 class MainModular extends Module {
   @override
@@ -11,7 +10,6 @@ class MainModular extends Module {
   final List<ModularRoute> routes = [
     ModuleRoute('/', module: AuthModule()),
     ModuleRoute('/home', module: MainModule()),
-    ModuleRoute('/schedule', module: ScheduleModule()),
-    ModuleRoute('/volunteer', module: VoluntarioModule()),
-  ];
+    ModuleRoute('/schedule', module: ScheduleModule())
+    ];
 }
